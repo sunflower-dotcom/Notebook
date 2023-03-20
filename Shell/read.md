@@ -1,3 +1,11 @@
+---
+title: read
+Date: 2023-03-09 14:22:29
+LastEditors: sunflower-dotcom 707339665@qq.com
+LastEditTime: 2023-03-20 16:07:05
+FilePath: \Notebook\Shell\read.md
+categories: shell
+---
 # read
 
 linux shell从键盘获取输入
@@ -7,7 +15,7 @@ linux shell从键盘获取输入
 #!/bin/bash  
   
 #提示“Input your choice:”，把用户的输入保存入变量choice\_user中  
-read -p "Input your choice:" choice\_user  
+read -p "Input your choice:" choice\_user   
 echo "your choice:${choice\_user}"
 
   
