@@ -2,7 +2,7 @@
 title: 对话记录
 Date: 2023-03-21 09:08:41
 LastEditors: sunflower-dotcom 707339665@qq.com
-LastEditTime: 2023-03-21 15:06:15
+LastEditTime: 2023-03-24 13:46:44
 FilePath: \Notebook\ChatGpt\Questions.md
 categories: ChatGPT
 ---
@@ -243,3 +243,32 @@ After the key pair is generated, you can access the private key using the  priv_
     BIGNUM *public_key = dh->pub_key; 
 ``` 
 You can then use these keys to perform a Diffie-Hellman key exchange to generate a shared secret key between two parties.
+
+1. 
+## Question :
+
+what's the difference between char (*a)[4] and char *a[4]?
+## Answer :
+
+The difference between  `char (*a)[4]`  and  `char *a[4]`  is that  `char (*a)[4]`  is a pointer to an array of 4 characters, while  `char *a[4]`  is an array of 4 pointers to characters.
+ Let's look at an example to understand this better:
+ ```c
+char (*a)[4];   // pointer to an array of 4 characters
+char *b[4];     // array of 4 pointers to characters
+ char c[4] = "abc";
+a = &c;         // a points to the array c
+ b[0] = "abc";   // b[0] points to the string literal "abc"
+ ```
+In the above example,  `a`  is a pointer to an array of 4 characters, and we assign the address of the array  `c`  to it. On the other hand,  `b`  is an array of 4 pointers to characters, and we assign the address of the string literal "abc" to its first element  `b[0]` .
+ Note that  `a`  can be used to access the array  `c`  as follows:
+printf("%c\n", (*a)[0]);   // prints 'a'
+printf("%c\n", (*a)[1]);   // prints 'b'
+printf("%c\n", (*a)[2]);   // prints 'c'
+Here, we use the dereference operator  `*`  to access the array  `c` , and then use the array subscript operator  `[]`  to access its elements.
+ Similarly,  `b`  can be used to access the string literal "abc" as follows:
+ ```c
+printf("%c\n", b[0][0]);   // prints 'a'
+printf("%c\n", b[0][1]);   // prints 'b'
+printf("%c\n", b[0][2]);   // prints 'c'
+```
+Here, we use the array subscript operator  `[]`  to access the first element of  `b`  which is a pointer to the string literal "abc", and then use the array subscript operator  `[]`  again to access its elements.
