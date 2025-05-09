@@ -1,5 +1,0 @@
-- [返回上一级 [Notebook]]()
-- [Projects](Projects/)
-  - [fldr](Projects/fldr/)
-    - [fldr](Projects/fldr/fldr.md)
-  - [record](Projects/record.md)

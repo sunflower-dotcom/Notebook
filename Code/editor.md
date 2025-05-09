@@ -2,41 +2,32 @@
 created: 2024-06-27T09:42:29 (UTC +08:00)
 tags: []
 source: https://spec.editorconfig.org/
-author: 
+author: null
 ---
 
 # EditorConfig Specification — EditorConfig Specification 0.16.0 documentation
 
-> ## Excerpt
+> ### Excerpt
+>
 > This is version 0.16.0 of this specification.
 
----
+***
+
 This is version 0.16.0 of this specification.
 
 Table of Contents
 
--   [EditorConfig Specification](https://spec.editorconfig.org/#editorconfig-specification)
-    
-    -   [Introduction (informative)](https://spec.editorconfig.org/#introduction-informative)
-        
-    -   [Terminology](https://spec.editorconfig.org/#terminology)
-        
-    -   [File Format](https://spec.editorconfig.org/#file-format)
-        
-        -   [No inline comments](https://spec.editorconfig.org/#no-inline-comments)
-            
-        -   [Parts of an EditorConfig file](https://spec.editorconfig.org/#parts-of-an-editorconfig-file)
-            
-    -   [Glob Expressions](https://spec.editorconfig.org/#glob-expressions)
-        
-    -   [File Processing](https://spec.editorconfig.org/#file-processing)
-        
-    -   [Supported Pairs](https://spec.editorconfig.org/#supported-pairs)
-        
-    -   [Suggestions for Plugin Developers](https://spec.editorconfig.org/#suggestions-for-plugin-developers)
-        
-    -   [Versioning](https://spec.editorconfig.org/#versioning)
-        
+* [EditorConfig Specification](https://spec.editorconfig.org/#editorconfig-specification)
+  * [Introduction (informative)](https://spec.editorconfig.org/#introduction-informative)
+  * [Terminology](https://spec.editorconfig.org/#terminology)
+  * [File Format](https://spec.editorconfig.org/#file-format)
+    * [No inline comments](https://spec.editorconfig.org/#no-inline-comments)
+    * [Parts of an EditorConfig file](https://spec.editorconfig.org/#parts-of-an-editorconfig-file)
+  * [Glob Expressions](https://spec.editorconfig.org/#glob-expressions)
+  * [File Processing](https://spec.editorconfig.org/#file-processing)
+  * [Supported Pairs](https://spec.editorconfig.org/#supported-pairs)
+  * [Suggestions for Plugin Developers](https://spec.editorconfig.org/#suggestions-for-plugin-developers)
+  * [Versioning](https://spec.editorconfig.org/#versioning)
 
 ## [Introduction (informative)](https://spec.editorconfig.org/#id2)
 
@@ -50,14 +41,10 @@ Changed in version 0.15.1.
 
 In EditorConfig:
 
--   “EditorConfig files” (usually named `.editorconfig`) include section(s) storing key-value pairs. EditorConfig files must conform to this specification.
-    
--   “Cores” parse files conforming to this specification, and provide key-value pairs to plugins.
-    
--   “Plugins” receive key-value pairs from cores and update an editor’s settings based on the key-value pairs.
-    
--   “Editors” permit editing files, and use plugins to update settings for files being edited.
-    
+* “EditorConfig files” (usually named `.editorconfig`) include section(s) storing key-value pairs. EditorConfig files must conform to this specification.
+* “Cores” parse files conforming to this specification, and provide key-value pairs to plugins.
+* “Plugins” receive key-value pairs from cores and update an editor’s settings based on the key-value pairs.
+* “Editors” permit editing files, and use plugins to update settings for files being edited.
 
 A conforming core or plugin must pass the tests in the [core-tests repository](https://github.com/editorconfig/editorconfig-core-test) or [plugin-tests repository](https://github.com/editorconfig/editorconfig-plugin-tests), respectively.
 
@@ -67,28 +54,16 @@ _(informative)_ Some plugins include or bundle their own cores, and some rely on
 
 EditorConfig files are in an INI-like file format. In an EditorConfig file, all beginning whitespace on each line is considered irrelevant. Each line must be one of the following:
 
--   Blank: contains only whitespace characters.
-    
--   Comment: starts with a `;` or a `#`.
-    
--   Section Header: starts with a `[` and ends with a `]`.
-    
-    -   May not use any non-whitespace characters outside of the surrounding brackets.
-        
-    -   May contain any characters between the square brackets (e.g., `[` and `]` and even spaces and tabs are allowed).
-        
-    -   Forward slashes (`/`) are used as path separators.
-        
-    -   Backslashes (`\\`) are not allowed as path separators (even on Windows).
-        
-    
--   Key-Value Pair (or Pair): contains a key and a value, separated by an \=.
-    
-    -   Key: The part before the first \= (trimmed of whitespace, but including any whitespace in the middle).
-        
-    -   Value: The part after the first \= (trimmed of whitespace, but including any whitespace in the middle).
-        
-    
+* Blank: contains only whitespace characters.
+* Comment: starts with a `;` or a `#`.
+* Section Header: starts with a `[` and ends with a `]`.
+  * May not use any non-whitespace characters outside of the surrounding brackets.
+  * May contain any characters between the square brackets (e.g., `[` and `]` and even spaces and tabs are allowed).
+  * Forward slashes (`/`) are used as path separators.
+  * Backslashes (`\\`) are not allowed as path separators (even on Windows).
+* Key-Value Pair (or Pair): contains a key and a value, separated by an =.
+  * Key: The part before the first = (trimmed of whitespace, but including any whitespace in the middle).
+  * Value: The part after the first = (trimmed of whitespace, but including any whitespace in the middle).
 
 Any line that is not one of the above is invalid.
 
@@ -98,89 +73,86 @@ EditorConfig files should be UTF-8 encoded, with LF or CRLF line separators.
 
 The parts of an EditorConfig file are:
 
--   Preamble: the lines that precedes the first section. The preamble is optional and may contain key-value pairs, comments and blank lines.
-    
--   Section Name: the string between the beginning `[` and the ending `]`.
-    
--   Section: the lines starting from a Section Header until the beginning of the next Section Header or the end of the file.
-    
+* Preamble: the lines that precedes the first section. The preamble is optional and may contain key-value pairs, comments and blank lines.
+* Section Name: the string between the beginning `[` and the ending `]`.
+* Section: the lines starting from a Section Header until the beginning of the next Section Header or the end of the file.
 
 ## [Glob Expressions](https://spec.editorconfig.org/#id7)
 
 Section names in EditorConfig files are filepath globs, similar to the format accepted by `.gitignore`. They support pattern matching through Unix shell-style wildcards. These filepath globs recognize the following as special characters for wildcard matching:
 
-| 
+|\
 Special Characters
 
- | 
+|
 
 Matching
 
- |
-| --- | --- |
-| 
+|\
+\| --- | --- |\
+|
 
 `*`
 
- | 
+|
 
 any string of characters, except path separators (`/`)
 
- |
-| 
+|\
+|
 
 `**`
 
- | 
+|
 
 any string of characters
 
- |
-| 
+|\
+|
 
 `?`
 
- | 
+|
 
 any single character, except path separators (`/`)
 
- |
-| 
+|\
+|
 
 `[seq]`
 
- | 
+|
 
 any single character in seq
 
- |
-| 
+|\
+|
 
 `[!seq]`
 
- | 
+|
 
 any single character not in seq
 
- |
-| 
+|\
+|
 
 `{s1,s2,s3}`
 
- | 
+|
 
 any of the strings given (separated by commas, can be nested) (But `{s1}` only matches `{s1}` literally.)
 
- |
-| 
+|\
+|
 
 `{num1..num2}`
 
- | 
+|
 
 any integer numbers between `num1` and `num2`, where `num1` and `num2` can be either positive or negative
 
- |
+|
 
 The backslash character (`\\`) can be used to escape a character so it is not interpreted as a special character.
 
@@ -198,72 +170,70 @@ Changed in version 0.16.
 
 EditorConfig file sections contain key-value pairs separated by an equal sign (`=`). With the exception of the `root` key, all pairs MUST be located under a section to take effect.
 
--   EditorConfig cores shall accept and report all syntactically valid key-value pairs, even if the key is not defined in this specification.
-    
--   EditorConfig plugins shall ignore unrecognized keys and invalid/unsupported values.
-    
+* EditorConfig cores shall accept and report all syntactically valid key-value pairs, even if the key is not defined in this specification.
+* EditorConfig plugins shall ignore unrecognized keys and invalid/unsupported values.
 
 Here is the list of all keys defined by this version of this specification, and the supported values associated with them:
 
-| 
+|\
 Key
 
- | 
+|
 
 Supported values
 
- |
-| --- | --- |
-| 
+|\
+\| --- | --- |\
+|
 
 `indent_style`
 
- | 
+|
 
 Set to `tab` or `space` to use hard tabs or soft tabs respectively. The values are case insensitive.
 
- |
-| 
+|\
+|
 
 `indent_size`
 
- | 
+|
 
 Set to a whole number defining the number of columns used for each indentation level and the width of soft tabs (when supported). If this equals `tab`, the `indent_size` shall be set to the tab size, which should be `tab_width` (if specified); else, the tab size set by the editor. The values are case insensitive.
 
- |
-| 
+|\
+|
 
 `tab_width`
 
- | 
+|
 
 Set to a whole number defining the number of columns used to represent a tab character. This defaults to the value of `indent_size` and should not usually need to be specified.
 
- |
-| 
+|\
+|
 
 `end_of_line`
 
- | 
+|
 
 Set to `lf`, `cr`, or `crlf` to control how line breaks are represented. The values are case insensitive.
 
- |
-| 
+|\
+|
 
 `charset`
 
- | 
+|
 
 Set to `latin1`, `utf-8`, `utf-8-bom`, `utf-16be` or `utf-16le` to control the character set. Use of `utf-8-bom` is discouraged.
 
- |
-| 
+|\
+|
 
 `spelling_language`
 
- | 
+|
 
 Sets the natural language that should be used for spell checking. Only one language can be specified. There is no default value.
 
@@ -271,34 +241,34 @@ The format is `ss` or `ss-TT`, where `ss` is an [ISO 639](https://en.wikipedia.o
 
 **Note:** This property does **not** specify the charset to be used. The charset is in separate property `charset`.
 
- |
-| 
+|\
+|
 
 `trim_trailing_whitespace`
 
- | 
+|
 
 Set to `true` to remove all whitespace characters preceding newline characters in the file and `false` to ensure it doesn’t.
 
- |
-| 
+|\
+|
 
 `insert_final_newline`
 
- | 
+|
 
 Set to `true` ensure file ends with a newline when saving and `false` to ensure it doesn’t.
 
- |
-| 
+|\
+|
 
 `root`
 
- | 
+|
 
 Must be specified in the preamble. Set to `true` to stop the `.editorconfig` file search on the current file. The value is case insensitive.
 
- |
+|
 
 For any pair, a value of `unset` removes the effect of that pair, even if it has been set before. For example, add `indent_size = unset` to undefine the `indent_size` pair (and use editor defaults).
 
