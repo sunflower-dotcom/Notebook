@@ -23,6 +23,7 @@
   * [Base64 - Wikipedia](Code/Base64.md)
   * [EditorConfig Specification — EditorConfig Specification 0.16.0 documentation](Code/editor.md)
   * [C](code/c.md)
+  * [patch](code/patch.md)
 * [Database](Database/README.md)
   * [Do not edit](Database/index.md)
   * [全密态数据库](Database/全密态数据库.md)
