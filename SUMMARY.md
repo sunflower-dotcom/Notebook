@@ -76,6 +76,7 @@
   * [windows](Shell/windows.md)
   * [常用命令](Shell/常用命令.md)
   * [SHELL 调试方法选项](Shell/调试.md)
+  * [ssh 免密登录](shell/ssh-mian-mi-deng-lu.md)
 * [Shortcuts](Shortcuts/README.md)
   * [vscode](Shortcuts/vscode.md)
 * [hexo](hexo/README.md)
