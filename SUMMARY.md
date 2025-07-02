@@ -11,7 +11,7 @@
   * [内联函数](C++/内联函数.md)
   * [智能指针](C++/智能指针.md)
 * [C](C/README.md)
-  * [编译选项-rdynamic](c/bian-yi-xuan-xiang-rdynamic.md)
+  * [链接选项-rdynamic](c/lian-jie-xuan-xiang-rdynamic.md)
   * [Epoll](C/Epoll.md)
   * [优先级](C/优先级.md)
   * [让人疑惑的C语言位域 - 知乎](C/位域.md)
